@@ -1,4 +1,5 @@
 import ResultItem from '../ResultItem/ResultItem';
+import { Grid } from '@material-ui/core';
 
 function ResultList(props) {
   const resultArray = props.resultArray;
@@ -7,13 +8,18 @@ function ResultList(props) {
     return <div/>;
   } else {
     return (
-      <ul>
+      <Grid
+      container
+      direction="column"
+      justify="center"
+      alignItems="center"
+    >
         {resultArray.map((result, key) => (
-          <li>
+          <Grid item>
             <ResultItem key={key} item={result} />
-          </li>
+          </Grid>
       ))}
-      </ul>
+      </Grid>
     )
   }
 

@@ -1,7 +1,7 @@
 import './App.css';
 import { useState, useEffect } from 'react';
 import ResultList from '../ResultList/ResultList';
-import { Button, TextField } from '@material-ui/core';
+import { Button, Grid, TextField } from '@material-ui/core';
 const axios = require('axios');
 
 function App(props) {
@@ -39,30 +39,40 @@ function App(props) {
 
   return (
     <div className="App">
-      <form onSubmit={handleSubmit} noValidate autoComplete="off">
-        <TextField
-          id="outlined-basic"
-          variant="outlined"
-          className="operand"
-          type="number"
-          value={operand1}
-          onChange={e => setOperand1(e.target.value)}
-          />
+      <Grid
+        container
+        direction="column"
+        justify="center"
+        alignItems="center"
+      >
 
-        <TextField
-          id="outlined-basic"
-          variant="outlined"
-          className="operand"
-          type="number"
-          value={operand2}
-          onChange={e => setOperand2(e.target.value)}
-          />
-        <Button onClick={handleSubmit} variant="contained" color="primary">{"="}</Button>
-      </form>
+        <Grid item>
+          <form onSubmit={handleSubmit} noValidate autoComplete="off">
+            <TextField
+              id="outlined-basic"
+              variant="outlined"
+              className="operand"
+              type="number"
+              value={operand1}
+              onChange={e => setOperand1(e.target.value)}
+              />
 
-      <ResultList resultArray={resultArray} />
+            <TextField
+              id="outlined-basic"
+              variant="outlined"
+              className="operand"
+              type="number"
+              value={operand2}
+              onChange={e => setOperand2(e.target.value)}
+              />
+            <Button onClick={handleSubmit} variant="contained" color="primary">{"="}</Button>
+          </form>
+        </Grid>
 
-
+        <Grid item>
+          <ResultList resultArray={resultArray} />
+        </Grid>
+      </Grid>
     </div>
   );
 }
