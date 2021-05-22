@@ -1,6 +1,8 @@
 import './App.css';
 import { useState, useEffect } from 'react';
 import ResultList from '../ResultList/ResultList';
+import { Button, TextField } from '@material-ui/core';
+const axios = require('axios');
 
 function App(props) {
   const [operand1, setOperand1] = useState(0);
@@ -8,10 +10,12 @@ function App(props) {
   const [resultArray, setResultArray] = useState([]);
   const [history, setHistory] = useState([]);
 
+  //handle sending the new result to the server
   const handleSubmit = (evt) => {
     evt.preventDefault();
     const newResult = Number(operand1) + Number(operand2);
-    setResultArray(resultArray => [...resultArray, newResult]);
+    setResultArray(resultArray => [newResult, ...resultArray]);
+
     axios.post('http://localhost:5000/add-history', newResult)
       .then((res) => {
         console.log(res);
@@ -25,7 +29,7 @@ function App(props) {
   }, [])
 
   const getHistory = () => {
-    axios.get('http://localhost:5000/get-history')
+    axios.get('http://localhost:5000/load-history')
       .then((res) => {
         const pastResults = res.data.pastResults;
         setHistory(pastResults);
@@ -35,21 +39,25 @@ function App(props) {
 
   return (
     <div className="App">
-      <form onSubmit={handleSubmit}>
-        <input
+      <form onSubmit={handleSubmit} noValidate autoComplete="off">
+        <TextField
+          id="outlined-basic"
+          variant="outlined"
           className="operand"
           type="number"
           value={operand1}
           onChange={e => setOperand1(e.target.value)}
           />
 
-        <input
+        <TextField
+          id="outlined-basic"
+          variant="outlined"
           className="operand"
           type="number"
           value={operand2}
           onChange={e => setOperand2(e.target.value)}
           />
-        <input type="submit" value="=" />
+        <Button onClick={handleSubmit} variant="contained" color="primary">{"="}</Button>
       </form>
 
       <ResultList resultArray={resultArray} />
