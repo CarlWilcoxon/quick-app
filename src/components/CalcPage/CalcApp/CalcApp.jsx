@@ -2,6 +2,7 @@ import './CalcApp.css';
 import { useState, useEffect } from 'react';
 import ResultList from '../ResultList/ResultList';
 import { Button, Grid, TextField } from '@material-ui/core';
+import NumPad from '../NumPad/NumPad';
 const axios = require('axios');
 
 function CalcApp(props) {
@@ -68,6 +69,7 @@ function CalcApp(props) {
             <Button onClick={handleSubmit} variant="contained" color="primary">{"="}</Button>
           </form>
         </Grid>
+        <NumPad/>
 
         <Grid item>
           <ResultList resultArray={resultArray} />
