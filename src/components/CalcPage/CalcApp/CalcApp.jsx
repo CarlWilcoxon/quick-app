@@ -47,28 +47,6 @@ function CalcApp(props) {
         alignItems="center"
       >
 
-        <Grid item>
-          <form onSubmit={handleSubmit} noValidate autoComplete="off">
-            <TextField
-              id="outlined-basic"
-              variant="outlined"
-              className="operand"
-              type="number"
-              value={operand1}
-              onChange={e => setOperand1(e.target.value)}
-              />
-
-            <TextField
-              id="outlined-basic"
-              variant="outlined"
-              className="operand"
-              type="number"
-              value={operand2}
-              onChange={e => setOperand2(e.target.value)}
-              />
-            <Button onClick={handleSubmit} variant="contained" color="primary">{"="}</Button>
-          </form>
-        </Grid>
         <NumPad/>
 
         <Grid item>
