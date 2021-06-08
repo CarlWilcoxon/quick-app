@@ -1,62 +1,92 @@
-import ResultItem from '../ResultItem/ResultItem';
-import { Grid } from '@material-ui/core';
-import { Button as Btn } from '@material-ui/core';
+import { Button, Grid, TextField } from '@material-ui/core';
+import { useState } from 'react';
 
 
-function NumPad(props) {
-  const resultArray = props.resultArray;
-  
+
+function NumPad() {
+  // const resultArray = props.resultArray;
+  const [display, setDisplay] = useState( '0' );
+  const [operator, setOperator] = useState( '' );
+
 
     return (
       <Grid
-      container
-      direction="column"
-      justify="center"
-      alignItems="center"
+        container
+        direction="column"
+        justify="center"
+        alignItems="center"
       >
-      
-      <Grid
+        <TextField
+          id="display"
+          variant="outlined"
+          type="number"
+          value={display}
+        />
+        <Grid
           container
+          id="row1"
           direction="row"
           justify="center"
           alignItems="center"
         >
-          <Btn>??</Btn>  <Btn>Ans</Btn>  <Btn>C</Btn>  <Btn>/</Btn>
+          <Button>??</Button>
+          <Button>Ans</Button>  
+          <Button onClick={() => {
+            setDisplay('0');
+            setOperator('');
+            }}>C</Button>  
+          <Button onClick={ ()=>setOperator('/') }>/</Button>
+        
+        
         </Grid>
         <Grid
           container
+          id="row2"
           direction="row"
           justify="center"
           alignItems="center"
         >
-          <Btn>7</Btn>  <Btn>8</Btn>  <Btn>9</Btn>  <Btn>*</Btn>
+          <Button onClick={ ()=>setDisplay(display + '7') }>7</Button>
+          <Button onClick={ ()=>setDisplay(display + '8') }>8</Button>
+          <Button onClick={ ()=>setDisplay(display + '9') }>9</Button>
+          <Button onClick={ ()=>setOperator('*') }>*</Button>
         </Grid>
         <Grid
           container
+          id="row3"
           direction="row"
           justify="center"
           alignItems="center"
         >
-          <Btn>4</Btn>  <Btn>5</Btn>  <Btn>6</Btn>  <Btn>-</Btn>
+          <Button>4</Button>
+          <Button>5</Button>
+          <Button>6</Button>
+          <Button onClick={ ()=>setOperator('-') }>-</Button>
         </Grid>
         <Grid
           container
+          id="row4"
           direction="row"
           justify="center"
           alignItems="center"
         >
-          <Btn>1</Btn>  <Btn>2</Btn>  <Btn>3</Btn>  <Btn>+</Btn>
+          <Button>1</Button>
+          <Button>2</Button>
+          <Button>3</Button>
+          <Button onClick={ ()=>setOperator('+') }>+</Button>
         </Grid>
         <Grid
           container
+          id="row5"
           direction="row"
           justify="center"
           alignItems="center"
         >
-          <Btn>0</Btn>  <Btn>.</Btn>  <Btn>(-/+)</Btn>  <Btn>=</Btn>
+          <Button>0</Button>
+          <Button>.</Button>
+          <Button>(-/+)</Button>
+          <Button>=</Button>
         </Grid>
-        {/* TODO Connect the numpad to reducers */}
-        {/* TODO Connect the equals button to sagas */}
       </Grid>
     )
   }
