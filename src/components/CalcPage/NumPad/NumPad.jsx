@@ -34,7 +34,9 @@ function NumPad() {
           <Button onClick={() => ans ? setDisplay(ans) : null }>Ans</Button>  
           <Button onClick={() => {
             setDisplay('0');
-            setOperator('');
+            setOperator();
+            setnum1();
+            setAns();
             }}>C</Button>
 
           <Button onClick={ () => {
@@ -111,16 +113,21 @@ function NumPad() {
             if(operator){
               if(operator==='+') {
                 setDisplay(String(Number(num1) + Number(display)));
+                console.log('Added');
               }
               if(operator==='-') {
                 setDisplay(String(Number(num1) - Number(display)));
+                console.log('Subtracted');
               }
               if(operator==='/') {
                 setDisplay(String(Number(num1) / Number(display)));
+                console.log('Divided');
               }
               if(operator==='*') {
                 setDisplay(String(Number(num1) * Number(display)));
+                console.log('Multiplied');
               }
+              console.log('Equal button pressed.');
               setAns(display);
             }}}>=</Button>
         </Grid>
