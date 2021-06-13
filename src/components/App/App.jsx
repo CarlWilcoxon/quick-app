@@ -6,6 +6,7 @@ import {
 } from "react-router-dom";
 
 import Home from "../Home/Home";
+import LifeApp from "../LifePage/LifeApp/LifeApp";
 import CalcApp from "../CalcPage/CalcApp/CalcApp";
 
 function App() {
@@ -21,8 +22,11 @@ function App() {
           <Route path="/calc">
             <CalcApp />
           </Route>
-          {/* <Route path="/life">
-            <LifePage />
+          <Route path="/life">
+            <LifeApp />
+          </Route>
+          {/* <Route path="/memory">
+            <MemPage />
           </Route> */}
         </Switch>
       </div>

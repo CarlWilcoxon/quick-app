@@ -18,6 +18,9 @@ function Home() {
           <li>
             <Link to="/life">Life</Link>
           </li>
+          <li>
+            <Link to="/memory">Memory</Link>
+          </li>
         </ul>
       </nav>
     </Router>
