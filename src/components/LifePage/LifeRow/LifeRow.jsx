@@ -1,9 +1,8 @@
 import { Grid } from '@material-ui/core';
-import { useState } from 'react';
 import LifeSquare from '../LifeSquare/LifeSquare';
 
-function LifeRow() {
-  const [life, setLife] = useState(['blue', 'blue', 'red', 'blue']);
+function LifeRow(props) {
+  const thisRow = props.life;
 
     return (
       <Grid
@@ -12,9 +11,9 @@ function LifeRow() {
         justify="center"
         alignItems="center"
       >
-      {life.map((item, key) => (
-        <LifeSquare key={key} square={item} />
-      ))}
+        {thisRow.map((item, key) => (
+          <LifeSquare key={key} square={item} />
+        ))}
       </Grid>
     )
   }
