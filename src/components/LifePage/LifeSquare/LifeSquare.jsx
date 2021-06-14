@@ -31,30 +31,6 @@ function LifeSquare(props) {
     </>
   )
 }
-//   if (props.alive) {
-//     return (
-//       <Button
-//       component="Grid"
-//       variant="contained"
-//       color="primary"
-//       onClick= {() => toggleClick( colNumber, rowNumber )}
-//       >
-//         O
-//       </Button>  
-//     )
-//   } else {
-//     return (
-//       <Button
-//       component="Grid"
-//       variant="contained"
-//       color="secondary"
-//       onClick= {() => toggleClick( colNumber, rowNumber )}
-//       >
-//         X
-//       </Button>  
-//     )
-//   }
-// }
 
 export default LifeSquare;
 

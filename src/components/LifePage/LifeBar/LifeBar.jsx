@@ -2,7 +2,6 @@ import { makeStyles } from '@material-ui/core/styles';
 import { AppBar, Button, FormControl, InputLabel, Select, Toolbar, Typography }from '@material-ui/core/';
 
 
-
 const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
@@ -20,9 +19,10 @@ const useStyles = makeStyles((theme) => ({
 
 }));
 
-export default function LifeBar(props) {
+function LifeBar(props) {
   const classes = useStyles();
   const {dimensions, setDimensions} = props;
+  
   const handleChange = (event) => {
     const name = event.target.name;
     setDimensions({
@@ -71,13 +71,19 @@ export default function LifeBar(props) {
             </Select>
           </FormControl>
           <Button
-          variant='contained'
-          color='secondary'
-          onClick={()=> {setDimensions({
-            rows: 5,
-            columns: 5,
+            variant='contained'
+            color='secondary'
+            onClick={()=> {setDimensions({
+              rows: 5,
+              columns: 5,
           })}}>
             Reset
+          </Button>
+          <Button
+            variant='outlined'
+            color='secondary'
+          >
+            Start!
           </Button>
         </Toolbar>
       </AppBar>
@@ -85,3 +91,5 @@ export default function LifeBar(props) {
   );
 }
 
+
+export default LifeBar;

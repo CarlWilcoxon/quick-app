@@ -5,7 +5,7 @@ import { useCallback, useState } from 'react';
 
 function LifeGrid(props) {
 
-  const { dimensions, life, setLife } = props;
+  const { life, toggleClick} = props;
 
   
   // const [life, setLife] = useState([
@@ -25,16 +25,6 @@ function LifeGrid(props) {
 
 
   //useCallback should speed up response time
-  const toggleClick = useCallback(
-    (x, y) => {
-      setLife(life => {
-        let copy = [...life];
-        copy[x][y] = !copy[x][y];
-        return copy;
-      });
-    },
-    [setLife]
-  );
   
 
 
