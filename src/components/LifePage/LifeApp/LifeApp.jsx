@@ -1,71 +1,31 @@
-import { Button, Grid } from '@material-ui/core';
-import LifeSquare from '../LifeSquare/LifeSquare';
-
-import { useCallback, useState } from 'react';
+import { useState, useEffect } from 'react';
+import LifeGrid from '../LifeGrid/LifeGrid';
+import LifeBar from '../LifeBar/LifeBar';
 
 function LifeApp() {
 
-  const [life, setLife] = useState([
-    [false, false, true, false],
-    [false, false, true, false],
-    [false, true, true, false],
-    [false, false, false, false]
-  ]);
-
-  // const toggleClick = (x, y) => {
-  //   let copy = [...life];
-  //   copy[x][y] = !copy[x][y];
-  //   setLife(copy);
-  //   console.log(life);
-  // }
-
-
-  //useCallback should speed up response time
-  const toggleClick = useCallback(
-    (x, y) => {
-      setLife(life => {
-        let copy = [...life];
-        copy[x][y] = !copy[x][y];
-        return copy;
-      });
-    },
-    [setLife]
+  const [dimensions, setDimensions] = useState({
+    rows: 5,
+    columns: 5,
+  });
+  const [life, setLife] = useState(
+    Array.from({ length: dimensions.rows }, v => Array.from({ length: dimensions.columns }, v => false))
   );
-  
+
+  useEffect(()=> {
+    setLife(
+      Array.from({ length: dimensions.rows }, v => Array.from({ length: dimensions.columns }, v => false))
+    );
+  }, [dimensions]);
+
 
 
   return (
-    <Grid
-    container
-    direction="column"
-    justify="center"
-    alignItems="center"
-  >
-    {life.map((thisRow, rowNumber) => (
-      <Grid
-      container
-      direction="row"
-      justify="center"
-      alignItems="center"
-      toggleClick={toggleClick}
-    >
-
-      {thisRow.map((alive, colNumber) => (
-        <LifeSquare
-        colNumber={colNumber}
-        rowNumber={rowNumber}
-        alive={alive}
-        toggleClick={toggleClick}/>
-
-      ))}
-
-    </Grid>
-    
-    ))}
-  </Grid>
-
+    <div className="LifeApp">
+      <LifeBar dimensions={dimensions} setDimensions={setDimensions} />
+      <LifeGrid dimensions={dimensions} life={life} setLife={setLife} />
+    </div>
   );
 }
 
 export default LifeApp;
-

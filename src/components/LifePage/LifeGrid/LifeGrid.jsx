@@ -1,0 +1,75 @@
+import { Grid } from '@material-ui/core';
+import LifeSquare from '../LifeSquare/LifeSquare';
+
+import { useCallback, useState } from 'react';
+
+function LifeGrid(props) {
+
+  const { dimensions, life, setLife } = props;
+
+  
+  // const [life, setLife] = useState([
+  //   [false, false, true, false, true],
+  //   [false, false, true, false, false],
+  //   [false, true, true, false, false],
+  //   [false, false, false, false, false],
+  //   [true, false, false, true, false]
+  // ]);
+
+  // const toggleClick = (x, y) => {
+  //   let copy = [...life];
+  //   copy[x][y] = !copy[x][y];
+  //   setLife(copy);
+  //   console.log(life);
+  // }
+
+
+  //useCallback should speed up response time
+  const toggleClick = useCallback(
+    (x, y) => {
+      setLife(life => {
+        let copy = [...life];
+        copy[x][y] = !copy[x][y];
+        return copy;
+      });
+    },
+    [setLife]
+  );
+  
+
+
+  return (
+    <Grid
+    container
+    direction="column"
+    justify="center"
+    alignItems="center"
+  >
+    {life.map((thisRow, rowIndex) => (
+      <Grid
+      container
+      direction="row"
+      justify="center"
+      alignItems="center"
+      toggleClick={toggleClick}
+    >
+
+      {thisRow.map((alive, colIndex) => (
+        <LifeSquare
+        colNumber={colIndex}
+        rowNumber={rowIndex}
+        alive={alive}
+        toggleClick={toggleClick}/>
+
+      ))}
+
+    </Grid>
+    
+    ))}
+  </Grid>
+
+  );
+}
+
+export default LifeGrid;
+
