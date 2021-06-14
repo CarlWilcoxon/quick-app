@@ -1,7 +1,7 @@
 import { Grid } from '@material-ui/core';
 import LifeSquare from '../LifeSquare/LifeSquare';
 
-import { useCallback, useState } from 'react';
+// import { useCallback, useState } from 'react';
 
 function LifeGrid(props) {
 
@@ -23,8 +23,6 @@ function LifeGrid(props) {
   //   console.log(life);
   // }
 
-
-  //useCallback should speed up response time
   
 
 

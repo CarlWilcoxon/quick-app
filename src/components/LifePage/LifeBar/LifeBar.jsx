@@ -21,7 +21,7 @@ const useStyles = makeStyles((theme) => ({
 
 function LifeBar(props) {
   const classes = useStyles();
-  const {dimensions, setDimensions} = props;
+  const {dimensions, running, setDimensions, setRunning} = props;
   
   const handleChange = (event) => {
     const name = event.target.name;
@@ -82,8 +82,9 @@ function LifeBar(props) {
           <Button
             variant='outlined'
             color='secondary'
+            onClick={()=> setRunning(!running)}
           >
-            Start!
+            {running ? "Pause" : "Start!"}
           </Button>
         </Toolbar>
       </AppBar>
