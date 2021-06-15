@@ -21,7 +21,7 @@ const useStyles = makeStyles((theme) => ({
 
 function LifeBar(props) {
   const classes = useStyles();
-  const {dimensions, running, setDimensions, setRunning} = props;
+  const {dimensions, nextGen, running, setDimensions, setLife, setRunning} = props;
   
   const handleChange = (event) => {
     const name = event.target.name;
@@ -74,15 +74,15 @@ function LifeBar(props) {
             variant='contained'
             color='secondary'
             onClick={()=> {setDimensions({
-              rows: 5,
-              columns: 5,
+              rows: 10,
+              columns: 10,
           })}}>
             Reset
           </Button>
           <Button
             variant='outlined'
             color='secondary'
-            onClick={()=> setRunning(!running)}
+            onClick={()=> setRunning(!running) }
           >
             {running ? "Pause" : "Start!"}
           </Button>

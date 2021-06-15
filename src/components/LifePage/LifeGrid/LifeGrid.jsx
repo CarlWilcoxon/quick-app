@@ -36,6 +36,7 @@ function LifeGrid(props) {
     {life.map((thisRow, rowIndex) => (
       <Grid
       container
+      key={rowIndex}
       direction="row"
       justify="center"
       alignItems="center"
@@ -44,6 +45,7 @@ function LifeGrid(props) {
 
       {thisRow.map((alive, colIndex) => (
         <LifeSquare
+        key={colIndex}
         colNumber={colIndex}
         rowNumber={rowIndex}
         alive={alive}
