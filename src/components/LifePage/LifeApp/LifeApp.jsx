@@ -102,7 +102,7 @@ function LifeApp() {
     if(running) {
       setTimeout(()=> {
         setLife( nextGen() );
-      }, 500);
+      }, 330);
     }
   }, [nextGen, running]);
 
