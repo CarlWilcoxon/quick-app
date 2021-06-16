@@ -39,7 +39,7 @@ function LifeApp() {
 
   // Logic to find the nextgen layout
   const nextGen = useCallback(()=> {
-      let copy = [...life];
+      let copy = Array.from({ length: dimensions.rows }, v => Array.from({ length: dimensions.columns }, v => false));
       
       // loop through all squares... edges stay the same
       for (let x = 1 ; x < dimensions.rows - 1; x++) {
@@ -57,10 +57,8 @@ function LifeApp() {
             count++;
           }
 
-          //target row
+          //target row (skip the target square)
           if (life[x-1][y]) {
-            count++;
-          } if (life[x][y]) {
             count++;
           } if (life[x+1][y]) {
             count++;
@@ -79,13 +77,11 @@ function LifeApp() {
           // Any dead cell with three live neighbours becomes a live cell.
           // All other live cells die in the next generation. Similarly, all other dead cells stay dead.
 
-          if ( alive && count > 1 && count < 4 ) {
-            copy[x][y]= true;
-          } else if ( !alive && count===3 ){
+          if ( (alive && ( 2 === count || count === 3 )) || (!alive && count === 3) ) {
             copy[x][y]= true;
           } else {
             copy[x][y]= false;
-          }
+          } 
         }
       }
       return copy;
