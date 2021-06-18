@@ -6,7 +6,7 @@ import {
 
 function Home() {
   return (
-    <Router>
+    <Router forceRefresh={true}>
         <nav>
         <ul>
           <li>
@@ -19,7 +19,7 @@ function Home() {
             <Link to="/life">Life</Link>
           </li>
           <li>
-            <Link to="/memory">Memory</Link>
+            <Link to="/match">Match</Link>
           </li>
         </ul>
       </nav>

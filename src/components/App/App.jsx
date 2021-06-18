@@ -8,6 +8,7 @@ import {
 import Home from "../Home/Home";
 import LifeApp from "../LifePage/LifeApp/LifeApp";
 import CalcApp from "../CalcPage/CalcApp/CalcApp";
+import MatchApp from "../MatchPage/MatchApp/MatchApp";
 
 function App() {
   return (
@@ -25,9 +26,9 @@ function App() {
           <Route path="/life">
             <LifeApp />
           </Route>
-          {/* <Route path="/memory">
-            <MemPage />
-          </Route> */}
+          <Route path="/match">
+            <MatchApp />
+          </Route>
         </Switch>
       </div>
     </Router>
