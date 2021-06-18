@@ -5,8 +5,8 @@ import LifeBar from '../LifeBar/LifeBar';
 function LifeApp() {
 
   const [dimensions, setDimensions] = useState({
-    rows: 10,
-    columns: 10,
+    rows: 20,
+    columns: 20,
   });
 
   const [running, setRunning] = useState(false);
@@ -110,14 +110,10 @@ function LifeApp() {
         dimensions={dimensions}
         running={running}
         setDimensions={setDimensions} 
-        setRunning={setRunning}
-        nextGen={nextGen}
-        setLife={setLife} />
+        setRunning={setRunning} />
       
       <LifeGrid
-        dimensions={dimensions}
         life={life}
-        setLife={setLife}
         toggleClick={toggleClick} />
 
     </div>

@@ -5,26 +5,7 @@ import LifeSquare from '../LifeSquare/LifeSquare';
 
 function LifeGrid(props) {
 
-  const { life, toggleClick} = props;
-
-  
-  // const [life, setLife] = useState([
-  //   [false, false, true, false, true],
-  //   [false, false, true, false, false],
-  //   [false, true, true, false, false],
-  //   [false, false, false, false, false],
-  //   [true, false, false, true, false]
-  // ]);
-
-  // const toggleClick = (x, y) => {
-  //   let copy = [...life];
-  //   copy[x][y] = !copy[x][y];
-  //   setLife(copy);
-  //   console.log(life);
-  // }
-
-  
-
+  const { life, toggleClick } = props;
 
   return (
     <Grid
