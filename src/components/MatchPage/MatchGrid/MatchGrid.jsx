@@ -32,7 +32,6 @@ function MatchGrid(props) {
       direction="row"
       justify="center"
       alignItems="center"
-      toggleClick={toggleClick}
     >
 
       {thisRow.map((alive, colIndex) => (
