@@ -1,25 +1,21 @@
 import './CalcApp.css';
 import { useState, useEffect } from 'react';
 import ResultList from '../ResultList/ResultList';
-import { Button, Grid, TextField } from '@material-ui/core';
+import { Grid } from '@material-ui/core';
 import NumPad from '../NumPad/NumPad';
 const axios = require('axios');
 
 function CalcApp(props) {
-  const [operand1, setOperand1] = useState(0);
-  const [operand2, setOperand2] = useState(0);
-  const [resultArray, setResultArray] = useState([]);
   const [history, setHistory] = useState([]);
 
   //handle sending the new result to the server
-  const handleSubmit = (evt) => {
-    evt.preventDefault();
-    const newResult = Number(operand1) + Number(operand2);
-    setResultArray(resultArray => [newResult, ...resultArray]);
+  const addResult = (ans) => {
+    let newResult = ans;
 
     axios.post('http://localhost:5000/add-history', newResult)
       .then((res) => {
         console.log(res);
+        getHistory();
       })
       .catch(error => console.error("Error adding new history."));
   }
@@ -47,10 +43,10 @@ function CalcApp(props) {
         alignItems="center"
       >
 
-        <NumPad/>
+        <NumPad addResult={addResult} />
 
         <Grid item>
-          <ResultList resultArray={resultArray} />
+          <ResultList history={history} />
         </Grid>
       </Grid>
     </div>

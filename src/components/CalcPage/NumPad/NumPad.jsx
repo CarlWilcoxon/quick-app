@@ -3,8 +3,8 @@ import { useState } from 'react';
 
 //TODO: fix typing numbers after pressing equal bug.
 
-function NumPad() {
-  // const resultArray = props.resultArray;
+function NumPad(props) {
+  const addResult = props.addResult;
   const [display, setDisplay] = useState( '0' );
   const [operator, setOperator] = useState();
   const [num1, setnum1] = useState();
@@ -19,7 +19,7 @@ function NumPad() {
         alignItems="center"
       >
         <TextField
-          id="display"
+          id="calc-display"
           variant="outlined"
           value={display}
         />
@@ -197,6 +197,7 @@ function NumPad() {
                 }
                 console.log('Equal button pressed.');
                 setAns(display);
+                addResult(display);
               }}}>=</Button>
         </Grid>
       </Grid>
