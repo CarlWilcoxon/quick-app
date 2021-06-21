@@ -98,7 +98,7 @@ function LifeApp() {
     if(running) {
       setTimeout(()=> {
         setLife( nextGen() );
-      }, 330);
+      }, 330); //adjust speed of updates here
     }
   }, [nextGen, running]);
 
