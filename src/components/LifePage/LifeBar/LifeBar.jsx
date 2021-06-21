@@ -1,6 +1,6 @@
 import { makeStyles } from '@material-ui/core/styles';
-import { AppBar, Button, FormControl, InputLabel, Select, Toolbar, Typography }from '@material-ui/core/';
-
+import { AppBar, Button, FormControl, InputLabel, Link, Select, Toolbar, Typography }from '@material-ui/core/';
+import HomeIcon from '@material-ui/icons/Home';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -35,6 +35,9 @@ function LifeBar(props) {
     <div className={classes.root}>
       <AppBar position="static">
         <Toolbar variant="dense">
+        <Link href="/" color="textPrimary">
+          <HomeIcon/>
+        </Link>
           <Typography variant="h6" color="inherit">
             Game of Life
           </Typography>
