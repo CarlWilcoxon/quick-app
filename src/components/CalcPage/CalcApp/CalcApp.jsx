@@ -3,32 +3,69 @@ import { useState, useEffect } from 'react';
 import ResultList from '../ResultList/ResultList';
 import { Grid } from '@material-ui/core';
 import NumPad from '../NumPad/NumPad';
-const axios = require('axios');
+import axios from 'axios';
 
 function CalcApp(props) {
   const [history, setHistory] = useState([]);
+  const [display, setDisplay] = useState( '0' );
+  const [operator, setOperator] = useState();
+  const [num1, setNum1] = useState();
+  const [ans, setAns] = useState();
 
-  //handle sending the new result to the server
-  const addResult = (ans) => {
-    let newResult = ans;
+  const calculate =  () => {
+    if(operator){
+      if(operator==='+') {
+        setDisplay(String(Number(num1) + Number(display)));
+        console.log('Added');
+      }
+      if(operator==='-') {
+        setDisplay(String(Number(num1) - Number(display)));
+        console.log('Subtracted');
+      }
+      if(operator==='/') {
+        setDisplay(String(Number(num1) / Number(display)));
+        console.log('Divided');
+      }
+      if(operator==='*') {
+        setDisplay(String(Number(num1) * Number(display)));
+        console.log('Multiplied');
+      }
+      console.log('Equal button pressed.');
+      setAns(display);
+    }};
 
-    axios.post('http://localhost:5000/add-history', newResult)
+  //send the new result to the server
+  useEffect(()=> {
+    let newResult = {'newEntry': ans};
+    axios.post('http://localhost:5000/api/history/add-history', newResult)
       .then((res) => {
-        console.log(res);
+        // console.log(res);
         getHistory();
       })
       .catch(error => console.error("Error adding new history."));
-  }
+  }, [ans])
+
+  // const addResult = (ans) => {
+  //   let newResult = {'newEntry': ans};
+
+  //   axios.post('http://localhost:5000/api/history/add-history', newResult)
+  //     .then((res) => {
+  //       console.log(res);
+  //       getHistory();
+  //     })
+  //     .catch(error => console.error("Error adding new history."));
+  // }
 
   // const changeOperator
   useEffect(() => {
     getHistory();
   }, [])
 
+  // get an array that contains the previous results from the calc
   const getHistory = () => {
-    axios.get('http://localhost:5000/load-history')
+    axios.get('http://localhost:5000/api/history/load-history')
       .then((res) => {
-        const pastResults = res.data.pastResults;
+        const pastResults = res.data.history;
         setHistory(pastResults);
       })
       .catch(error => console.error("Error getting history."));
@@ -43,7 +80,14 @@ function CalcApp(props) {
         alignItems="center"
       >
 
-        <NumPad addResult={addResult} />
+        <NumPad
+        display={display}
+        setDisplay={setDisplay}
+        setOperator={setOperator}
+        num1={num1}
+        setNum1={setNum1}
+        setAns={setAns}
+        calculate={calculate} />
 
         <Grid item>
           <ResultList history={history} />

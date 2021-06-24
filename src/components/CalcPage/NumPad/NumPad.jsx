@@ -1,15 +1,14 @@
 import { Button, Grid, TextField } from '@material-ui/core';
-import { useState } from 'react';
+// import { useState } from 'react';
 
-//TODO: fix typing numbers after pressing equal bug.
 
 function NumPad(props) {
-  const addResult = props.addResult;
-  const [display, setDisplay] = useState( '0' );
-  const [operator, setOperator] = useState();
-  const [num1, setnum1] = useState();
-  const [ans, setAns] = useState();
-
+  const { 
+    ans, setAns,
+    display, setDisplay,
+    setOperator,
+    num1, setNum1,
+    calculate } = props;
 
     return (
       <Grid
@@ -30,19 +29,19 @@ function NumPad(props) {
           justify="center"
           alignItems="center"
         >
+          <Button 
+            variant="contained"
+            onClick={() => ans ? setDisplay(ans) : null }
+            >Ans</Button>  
           <Button
             variant="contained"
           >??</Button>
           <Button 
             variant="contained"
-            onClick={() => ans ? setDisplay(ans) : null }
-            >Ans</Button>  
-          <Button 
-            variant="contained"
             onClick={() => {
               setDisplay('0');
               setOperator();
-              setnum1();
+              setNum1();
               setAns();
               }}>C</Button>
 
@@ -51,10 +50,9 @@ function NumPad(props) {
             color="secondary"
             onClick={ () => {
               setOperator('/');
-              if(!num1) {
-                setnum1(display);
+                setNum1(display);
                 setDisplay('0');
-              }}}>/</Button>
+              }}>/</Button>
         
         
         </Grid>
@@ -85,10 +83,9 @@ function NumPad(props) {
             color="secondary" 
             onClick={ () => {
               setOperator('*');
-              if(!num1) {
-                setnum1(display);
+                setNum1(display);
                 setDisplay('0');
-              }}}>*</Button>
+              }}>*</Button>
         </Grid>
         <Grid
           container
@@ -117,10 +114,9 @@ function NumPad(props) {
             color="secondary"
             onClick={ () => {
               setOperator('-');
-              if(!num1) {
-                setnum1(display);
+                setNum1(display);
                 setDisplay('0');
-              }}}>-</Button>
+              }}>-</Button>
         </Grid>
         <Grid
           container
@@ -149,10 +145,9 @@ function NumPad(props) {
             color="secondary"
             onClick={ () => {
               setOperator('+');
-              if(!num1) {
-                setnum1(display);
+                setNum1(display);
                 setDisplay('0');
-              }}}>+</Button>
+              }}>+</Button>
         </Grid>
         <Grid
           container
@@ -177,28 +172,7 @@ function NumPad(props) {
           <Button 
             variant="contained"
             color="secondary"
-            onClick={ () => {
-              if(operator){
-                if(operator==='+') {
-                  setDisplay(String(Number(num1) + Number(display)));
-                  console.log('Added');
-                }
-                if(operator==='-') {
-                  setDisplay(String(Number(num1) - Number(display)));
-                  console.log('Subtracted');
-                }
-                if(operator==='/') {
-                  setDisplay(String(Number(num1) / Number(display)));
-                  console.log('Divided');
-                }
-                if(operator==='*') {
-                  setDisplay(String(Number(num1) * Number(display)));
-                  console.log('Multiplied');
-                }
-                console.log('Equal button pressed.');
-                setAns(display);
-                addResult(display);
-              }}}>=</Button>
+            onClick={calculate}>=</Button>
         </Grid>
       </Grid>
     )
