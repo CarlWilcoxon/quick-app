@@ -3,7 +3,7 @@ const { resetWarningCache } = require('prop-types');
 const pool = require('../modules/pool');
 const router = express.Router();
 
-let history = [10,0];
+let history = [];
 /**
  * GET route template
  */
@@ -18,6 +18,7 @@ router.get('/load-history', (req, res) => {
  router.post('/add-history', (req, res) => {
   console.log('input is',req.body);
 
+  //convert the string into a number for storage
   history.push(Number(req.body.newEntry));
 
   res.sendStatus(200);

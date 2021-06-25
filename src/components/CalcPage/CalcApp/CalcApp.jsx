@@ -6,30 +6,31 @@ import NumPad from '../NumPad/NumPad';
 import axios from 'axios';
 
 function CalcApp(props) {
-  const [history, setHistory] = useState([0,10,20]);
+  const [history, setHistory] = useState();
   const [display, setDisplay] = useState( '0' );
   const [operator, setOperator] = useState();
   const [num1, setNum1] = useState( '0' );
-  const [ans, setAns] = useState( '0' );
+  const [ans, setAns] = useState( );
 
+  //I use strings so I can append decimal points and check for decimals with .includes
   const calculate = () => {
     let num2 = display;
     let result = 0;
     if(operator){
       if(operator==='+') {
-        result = (String(Number(num1) + Number(num2)));
+        result = String(Number(num1) + Number(num2));
         console.log('Added');
       }
       if(operator==='-') {
-        result = (String(Number(num1) - Number(num2)));
+        result = String(Number(num1) - Number(num2));
         console.log('Subtracted');
       }
       if(operator==='/') {
-        result = (String(Number(num1) / Number(num2)));
+        result = String(Number(num1) / Number(num2));
         console.log('Divided');
       }
       if(operator==='*') {
-        result = (String(Number(num1) * Number(num2)));
+        result = String(Number(num1) * Number(num2));
         console.log('Multiplied');
       }
       console.log('Equal button pressed.');
@@ -39,13 +40,15 @@ function CalcApp(props) {
 
   //send the new result to the server
   useEffect( ()=> {
-    let newResult = {newEntry: ans};
-    axios.post('http://localhost:5000/api/history/add-history', newResult)
-      .then((res) => {
-        // console.log(res);
-        getHistory();
-      })
-      .catch(error => console.error("Error adding new history."));
+    if (typeof(ans) === "string") {
+      let newResult = {newEntry: ans};
+      axios.post('http://localhost:5000/api/history/add-history', newResult)
+        .then((res) => {
+          // console.log(res);
+          getHistory();
+        })
+        .catch(error => console.error("Error adding new history."));
+    }
   }, [ans])
 
   // const addResult = (ans) => {
