@@ -2,6 +2,7 @@ import { Grid } from '@material-ui/core';
 
 function ResultList(props) {
   const history = props.history;
+  console.log(history);
   
   if (history == null) {
     return <div/>;

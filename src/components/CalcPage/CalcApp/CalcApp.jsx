@@ -6,37 +6,40 @@ import NumPad from '../NumPad/NumPad';
 import axios from 'axios';
 
 function CalcApp(props) {
-  const [history, setHistory] = useState([]);
+  const [history, setHistory] = useState([0,10,20]);
   const [display, setDisplay] = useState( '0' );
   const [operator, setOperator] = useState();
-  const [num1, setNum1] = useState();
-  const [ans, setAns] = useState();
+  const [num1, setNum1] = useState( '0' );
+  const [ans, setAns] = useState( '0' );
 
-  const calculate =  () => {
+  const calculate = () => {
+    let num2 = display;
+    let result = 0;
     if(operator){
       if(operator==='+') {
-        setDisplay(String(Number(num1) + Number(display)));
+        result = (String(Number(num1) + Number(num2)));
         console.log('Added');
       }
       if(operator==='-') {
-        setDisplay(String(Number(num1) - Number(display)));
+        result = (String(Number(num1) - Number(num2)));
         console.log('Subtracted');
       }
       if(operator==='/') {
-        setDisplay(String(Number(num1) / Number(display)));
+        result = (String(Number(num1) / Number(num2)));
         console.log('Divided');
       }
       if(operator==='*') {
-        setDisplay(String(Number(num1) * Number(display)));
+        result = (String(Number(num1) * Number(num2)));
         console.log('Multiplied');
       }
       console.log('Equal button pressed.');
-      setAns(display);
+      setDisplay(result);
+      setAns(result);
     }};
 
   //send the new result to the server
-  useEffect(()=> {
-    let newResult = {'newEntry': ans};
+  useEffect( ()=> {
+    let newResult = {newEntry: ans};
     axios.post('http://localhost:5000/api/history/add-history', newResult)
       .then((res) => {
         // console.log(res);
@@ -98,4 +101,3 @@ function CalcApp(props) {
 }
 
 export default CalcApp;
-
