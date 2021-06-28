@@ -7,7 +7,7 @@ function NumPad(props) {
     ans, setAns,
     display, setDisplay,
     setOperator,
-    num1, setNum1,
+    setNum1,
     calculate } = props;
 
     return (
