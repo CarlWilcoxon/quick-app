@@ -7,6 +7,7 @@ const imageFolder = '/Users/raven/Documents/Solo/JavaScript/quick-app/public/ima
 // only contains Aces and Queens currently
 const cardList = [
   'AC', 'AD', 'AH', 'AS',
+
   'QC', 'QD', 'QH', 'QS',
 ];
 
@@ -23,7 +24,7 @@ router.get('/images/load/:id', (req, res) => {
   const id = req.params.id;
 
   // make sure it is a valid card
-  if (cardList) {
+  if (cardList.includes(id)) {
     res.sendFile(`/card-faces/${id}.svg`, {root: imageFolder})
   }
   else

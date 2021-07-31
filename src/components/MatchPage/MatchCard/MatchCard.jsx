@@ -19,14 +19,12 @@ function LifeSquare(props) {
 
         :
 
-        <Button
-        component="Grid"
-        variant="contained"
-        color="secondary"
-        onClick= {() => toggleClick( rowNumber, colNumber )}
-        >
-          X
-        </Button>
+        <img
+          src="public/images/back"
+          alt="bob"
+          width="100"
+          onClick= {() => toggleClick( rowNumber, colNumber )}
+        />
       }
     </>
   )

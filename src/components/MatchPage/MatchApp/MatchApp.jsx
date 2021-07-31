@@ -5,8 +5,8 @@ import MatchBar from '../MatchBar/MatchBar';
 function MatchApp() {
 
   const [dimensions, setDimensions] = useState({
-    rows: 20,
-    columns: 20,
+    rows: 4,
+    columns: 4,
   });
 
   const [running, setRunning] = useState(false);
