@@ -25,9 +25,11 @@ app.use(express.urlencoded({extended:true}));
 
 // Route includes
 const historyRouter = require('./routes/history.router');
+const imageRouter = require('./routes/image.router');
 
 /* Routes */
 app.use('/api/history', historyRouter)
+app.use('/public/', imageRouter)
 
 // Serve static files
 app.use(express.static('build'));
