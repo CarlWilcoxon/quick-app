@@ -36,7 +36,7 @@ function MatchBar(props) {
       <AppBar position="static">
         <Toolbar variant="dense">
           <Typography variant="h6" color="inherit">
-            Game of Life
+            Match Game
           </Typography>
           <FormControl className={classes.formControl}>
           <InputLabel htmlFor="rows-native-simple">Rows</InputLabel>
