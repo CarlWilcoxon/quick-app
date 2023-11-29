@@ -23,6 +23,8 @@ Launches the server that is needed for the calculator to remember past results.
 
 ### Calculator
 
+A simple calculator, that can perform addition, subraction, multiplication and addition.
+
 ### Conway's Game of Life
 
 
